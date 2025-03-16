@@ -7,6 +7,7 @@ var logger = require('morgan');
 const {db}=require('./config/DbConnection')
 var usersRouter = require('./routes/users');
 const cors=require('cors')
+const authRouter=require('./routes/auth.routes')
 db();
 var app = express();
 
@@ -22,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors())
 app.use('/users', usersRouter);
-
+app.use('/auth',authRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
